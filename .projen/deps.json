@@ -1,8 +1,27 @@
 {
   "dependencies": [
     {
-      "name": "@aws-cdk/assert",
-      "version": "^1.95.2",
+      "name": "@aws-cdk/assertions",
+      "type": "build"
+    },
+    {
+      "name": "@aws-cdk/aws-cloudwatch",
+      "type": "build"
+    },
+    {
+      "name": "@aws-cdk/aws-kms",
+      "type": "build"
+    },
+    {
+      "name": "@aws-cdk/aws-logs",
+      "type": "build"
+    },
+    {
+      "name": "@aws-cdk/aws-s3",
+      "type": "build"
+    },
+    {
+      "name": "@aws-cdk/core",
       "type": "build"
     },
     {
@@ -11,7 +30,7 @@
     },
     {
       "name": "@types/node",
-      "version": "^10.17.0",
+      "version": "^14.17.0",
       "type": "build"
     },
     {
@@ -20,6 +39,10 @@
     },
     {
       "name": "@typescript-eslint/parser",
+      "type": "build"
+    },
+    {
+      "name": "constructs",
       "type": "build"
     },
     {
@@ -93,6 +116,30 @@
     {
       "name": "typescript",
       "type": "build"
+    },
+    {
+      "name": "@aws-cdk/assertions",
+      "type": "peer"
+    },
+    {
+      "name": "@aws-cdk/aws-cloudwatch",
+      "type": "peer"
+    },
+    {
+      "name": "@aws-cdk/aws-kms",
+      "type": "peer"
+    },
+    {
+      "name": "@aws-cdk/aws-logs",
+      "type": "peer"
+    },
+    {
+      "name": "@aws-cdk/aws-s3",
+      "type": "peer"
+    },
+    {
+      "name": "@aws-cdk/core",
+      "type": "peer"
     },
     {
       "name": "constructs",

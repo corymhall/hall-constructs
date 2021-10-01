@@ -1,20 +1,58 @@
-import { AwsCdkConstructLibrary } from 'projen';
+import { AwsCdkConstructLibrary, Catalog, DependenciesUpgradeMechanism } from 'projen';
+
+const cdkDeps = [
+  'constructs',
+  '@aws-cdk/core',
+  '@aws-cdk/aws-cloudwatch',
+  '@aws-cdk/aws-logs',
+  '@aws-cdk/aws-kms',
+  '@aws-cdk/assertions',
+  '@aws-cdk/aws-s3',
+];
+
 const project = new AwsCdkConstructLibrary({
   author: 'corymhall',
   authorAddress: '43035978+corymhall@users.noreply.github.com',
   cdkVersion: '1.95.2',
   defaultReleaseBranch: 'main',
-  name: 'cdk-dev-aspects',
+  name: 'hall-constructs',
   projenrcTs: true,
-  repositoryUrl: 'https://github.com/corymhall/cdk-dev-aspects.git',
+  repositoryUrl: 'https://github.com/corymhall/hall-constructs.git',
+  stale: false,
+  catalog: {
+    announce: false,
+  },
 
-  // cdkDependencies: undefined,        /* Which AWS CDK modules (those that start with "@aws-cdk/") does this library require when consumed? */
-  // cdkTestDependencies: undefined,    /* AWS CDK modules required for testing. */
-  // deps: [],                          /* Runtime dependencies of this module. */
-  // description: undefined,            /* The description is just a string that helps people understand the purpose of the package. */
-  // devDeps: [],                       /* Build dependencies for this module. */
-  // packageName: undefined,            /* The "name" in package.json. */
-  // projectType: ProjectType.UNKNOWN,  /* Which type of project this is (library/app). */
-  // release: undefined,                /* Add release management to this project. */
+  cdkAssert: false,
+  releaseToNpm: false,
+  peerDeps: [
+    ...cdkDeps,
+  ],
+  devDeps: [
+    ...cdkDeps,
+  ],
+
+  autoApproveUpgrades: true,
+  autoApproveOptions: {
+    allowedUsernames: ['corymhall'],
+    secret: 'GITHUB_TOKEN',
+  },
+  // disabling due to https://github.com/aws/jsii/issues/2842
+  // publishToGo: {
+  //   moduleName: 'github.com/corymhall',
+  // },
+
+  depsUpgrade: DependenciesUpgradeMechanism.githubWorkflow({
+    workflowOptions: {
+      labels: ['auto-approve'],
+      secret: 'PROJEN_GITHUB_TOKEN',
+      container: {
+        image: 'jsii/superchain',
+      },
+    },
+    exclude: [
+      ...cdkDeps,
+    ],
+  }),
 });
 project.synth();
