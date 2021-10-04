@@ -1,4 +1,4 @@
-import { AwsCdkConstructLibrary, Catalog, DependenciesUpgradeMechanism } from 'projen';
+import { AwsCdkConstructLibrary } from 'projen';
 
 const cdkDeps = [
   'constructs',
@@ -24,11 +24,12 @@ const project = new AwsCdkConstructLibrary({
   },
 
   cdkAssert: false,
-  releaseToNpm: false,
+  releaseToNpm: true,
   peerDeps: [
     ...cdkDeps,
   ],
   devDeps: [
+    '@aws-cdk/assert',
     ...cdkDeps,
   ],
 
@@ -41,8 +42,8 @@ const project = new AwsCdkConstructLibrary({
   // publishToGo: {
   //   moduleName: 'github.com/corymhall',
   // },
-
-  depsUpgrade: DependenciesUpgradeMechanism.githubWorkflow({
+  //
+  depsUpgradeOptions: {
     workflowOptions: {
       labels: ['auto-approve'],
       secret: 'PROJEN_GITHUB_TOKEN',
@@ -53,6 +54,6 @@ const project = new AwsCdkConstructLibrary({
     exclude: [
       ...cdkDeps,
     ],
-  }),
+  },
 });
 project.synth();

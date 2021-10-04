@@ -14,6 +14,7 @@ export class Retention extends Policy implements cdk.IAspect {
     const resource = node as cdk.CfnResource;
     if (resource.cfnResourceType) {
       resource.applyRemovalPolicy(cdk.RemovalPolicy.DESTROY, { applyToUpdateReplacePolicy: true });
+      this.addInfo(node, this, 'updating removal policy to DELETE');
     }
   }
 }

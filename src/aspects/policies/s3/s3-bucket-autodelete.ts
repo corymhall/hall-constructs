@@ -35,6 +35,7 @@ export class S3BucketAutoDelete extends Policy implements cdk.IAspect {
           },
         ],
       };
+      this.addInfo(node, this, 'Adding autodelete lifycycle configuration to bucket');
     }
   }
 }

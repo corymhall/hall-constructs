@@ -16,6 +16,7 @@ export class KmsKeyPolicy extends Policy implements cdk.IAspect {
       const key = node as kms.CfnKey;
       key.enableKeyRotation = false;
       key.pendingWindowInDays = 7;
+      this.addInfo(node, this, 'enabling key rotation and setting pendingWindowInDays to 7');
     }
   }
 }

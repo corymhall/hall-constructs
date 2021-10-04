@@ -160,13 +160,25 @@
       },
       "steps": [
         {
-          "exec": "npm-check-updates --upgrade --target=minor --reject='constructs,@aws-cdk/core,@aws-cdk/aws-cloudwatch,@aws-cdk/aws-logs,@aws-cdk/aws-kms,@aws-cdk/assertions,@aws-cdk/aws-s3,projen'"
+          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='constructs,@aws-cdk/core,@aws-cdk/aws-cloudwatch,@aws-cdk/aws-logs,@aws-cdk/aws-kms,@aws-cdk/assertions,@aws-cdk/aws-s3,projen'"
+        },
+        {
+          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='constructs,@aws-cdk/core,@aws-cdk/aws-cloudwatch,@aws-cdk/aws-logs,@aws-cdk/aws-kms,@aws-cdk/assertions,@aws-cdk/aws-s3,projen'"
+        },
+        {
+          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='constructs,@aws-cdk/core,@aws-cdk/aws-cloudwatch,@aws-cdk/aws-logs,@aws-cdk/aws-kms,@aws-cdk/assertions,@aws-cdk/aws-s3,projen'"
+        },
+        {
+          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='constructs,@aws-cdk/core,@aws-cdk/aws-cloudwatch,@aws-cdk/aws-logs,@aws-cdk/aws-kms,@aws-cdk/assertions,@aws-cdk/aws-s3,projen'"
+        },
+        {
+          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='constructs,@aws-cdk/core,@aws-cdk/aws-cloudwatch,@aws-cdk/aws-logs,@aws-cdk/aws-kms,@aws-cdk/assertions,@aws-cdk/aws-s3,projen'"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import jest jest-junit jsii jsii-diff jsii-docgen jsii-pacmak json-schema npm-check-updates standard-version ts-jest ts-node typescript"
+          "exec": "yarn upgrade @aws-cdk/assert @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import jest jest-junit jsii jsii-diff jsii-docgen jsii-pacmak json-schema npm-check-updates standard-version ts-jest ts-node typescript"
         },
         {
           "exec": "npx projen"
@@ -181,7 +193,19 @@
       },
       "steps": [
         {
-          "exec": "npm-check-updates --upgrade --target=minor --filter='projen'"
+          "exec": "npm-check-updates --dep dev --upgrade --target=minor --filter='projen'"
+        },
+        {
+          "exec": "npm-check-updates --dep optional --upgrade --target=minor --filter='projen'"
+        },
+        {
+          "exec": "npm-check-updates --dep peer --upgrade --target=minor --filter='projen'"
+        },
+        {
+          "exec": "npm-check-updates --dep prod --upgrade --target=minor --filter='projen'"
+        },
+        {
+          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --filter='projen'"
         },
         {
           "exec": "yarn install --check-files"
@@ -235,6 +259,22 @@
       "steps": [
         {
           "exec": "jsii-diff npm:$(node -p \"require('./package.json').name\") -k --ignore-file .compatignore || (echo \"\nUNEXPECTED BREAKING CHANGES: add keys such as 'removed:constructs.Node.of' to .compatignore to skip.\n\" && exit 1)"
+        }
+      ]
+    },
+    "publish:npm": {
+      "name": "publish:npm",
+      "description": "Publish this package to npm",
+      "env": {
+        "NPM_DIST_TAG": "latest",
+        "NPM_REGISTRY": "registry.npmjs.org"
+      },
+      "requiredEnv": [
+        "NPM_TOKEN"
+      ],
+      "steps": [
+        {
+          "exec": "npx -p jsii-release@latest jsii-release-npm"
         }
       ]
     },
