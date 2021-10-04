@@ -56,4 +56,6 @@ const project = new AwsCdkConstructLibrary({
     ],
   },
 });
+
+project.gitignore.include('src/aspects/policies/logs');
 project.synth();
