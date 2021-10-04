@@ -14,10 +14,8 @@ test('hallapp', () => {
   new s3.Bucket(stack, 'Bucket');
 
   const tags = SynthUtils.synthesize(stack).tags;
-  expect(tags).toEqual({
-    dir: '/home/hallcor/github/corymhall/hall-constructs',
-    repoName: 'github.com/corymhall/hall-constructs',
-  });
+  expect(tags.dir).toMatch(/hall-constructs/);
+  expect(tags.repoName).toMatch(/hall-constructs/);
 
   const template = assertions.Template.fromStack(stack);
   template.hasResource('AWS::S3::Bucket', {
