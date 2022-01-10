@@ -1,6 +1,48 @@
 # API Reference <a name="API Reference"></a>
 
+## Constructs <a name="Constructs"></a>
 
+### HallApp <a name="hall-constructs.HallApp"></a>
+
+#### Initializers <a name="hall-constructs.HallApp.Initializer"></a>
+
+```typescript
+import { HallApp } from 'hall-constructs'
+
+new HallApp(props: HallAppProps)
+```
+
+##### `props`<sup>Required</sup> <a name="hall-constructs.HallApp.parameter.props"></a>
+
+- *Type:* [`hall-constructs.HallAppProps`](#hall-constructs.HallAppProps)
+
+---
+
+
+
+
+
+## Structs <a name="Structs"></a>
+
+### HallAppProps <a name="hall-constructs.HallAppProps"></a>
+
+#### Initializer <a name="[object Object].Initializer"></a>
+
+```typescript
+import { HallAppProps } from 'hall-constructs'
+
+const hallAppProps: HallAppProps = { ... }
+```
+
+##### `repoName`<sup>Required</sup> <a name="hall-constructs.HallAppProps.property.repoName"></a>
+
+```typescript
+public readonly repoName: string;
+```
+
+- *Type:* `string`
+
+---
 
 ## Classes <a name="Classes"></a>
 

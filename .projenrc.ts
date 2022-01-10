@@ -16,6 +16,7 @@ const project = new AwsCdkConstructLibrary({
   cdkVersion: '1.95.2',
   defaultReleaseBranch: 'main',
   name: 'hall-constructs',
+  minNodeVersion: '12.7.0',
   projenrcTs: true,
   repositoryUrl: 'https://github.com/corymhall/hall-constructs.git',
   stale: false,
