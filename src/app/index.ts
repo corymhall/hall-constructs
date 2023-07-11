@@ -1,4 +1,4 @@
-import * as cdk from '@aws-cdk/core';
+import * as cdk from 'aws-cdk-lib/core';
 import { DevPack, AwsCdkInspector } from '../aspects';
 
 export interface HallAppProps {
@@ -7,11 +7,7 @@ export interface HallAppProps {
 
 export class HallApp extends cdk.App {
   constructor(props: HallAppProps) {
-    super({
-      context: {
-        '@aws-cdk/core:newStyleStackSynthesis': '1',
-      },
-    });
+    super();
 
     new AwsCdkInspector(DevPack.policies()).check(this);
 

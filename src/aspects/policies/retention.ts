@@ -1,4 +1,5 @@
-import * as cdk from '@aws-cdk/core';
+import * as cdk from 'aws-cdk-lib/core';
+import { IConstruct } from 'constructs';
 import { Policy } from '../policy';
 
 export class Retention extends Policy implements cdk.IAspect {
@@ -10,7 +11,7 @@ export class Retention extends Policy implements cdk.IAspect {
     super();
   }
 
-  public visit(node: cdk.IConstruct): void {
+  public visit(node: IConstruct): void {
     const resource = node as cdk.CfnResource;
     if (resource.cfnResourceType) {
       resource.applyRemovalPolicy(cdk.RemovalPolicy.DESTROY, { applyToUpdateReplacePolicy: true });

@@ -1,5 +1,6 @@
-import * as s3 from '@aws-cdk/aws-s3';
-import * as cdk from '@aws-cdk/core';
+import * as s3 from 'aws-cdk-lib/aws-s3';
+import * as cdk from 'aws-cdk-lib/core';
+import { IConstruct } from 'constructs';
 import { Policy } from '../../policy';
 
 export class S3BucketAutoDelete extends Policy implements cdk.IAspect {
@@ -11,7 +12,7 @@ export class S3BucketAutoDelete extends Policy implements cdk.IAspect {
     super();
   }
 
-  public visit(node: cdk.IConstruct): void {
+  public visit(node: IConstruct): void {
     if ((node as cdk.CfnResource).cfnResourceType === 'AWS::S3::Bucket') {
       const bucket = node as s3.CfnBucket;
       bucket.lifecycleConfiguration = {

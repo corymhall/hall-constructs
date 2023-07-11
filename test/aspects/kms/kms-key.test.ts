@@ -1,6 +1,6 @@
-import * as assertions from '@aws-cdk/assertions';
-import * as kms from '@aws-cdk/aws-kms';
-import * as cdk from '@aws-cdk/core';
+import * as assertions from 'aws-cdk-lib/assertions';
+import * as kms from 'aws-cdk-lib/aws-kms';
+import * as cdk from 'aws-cdk-lib/core';
 import { KmsKeyPolicy } from '../../../src/aspects';
 
 let stack: cdk.Stack;

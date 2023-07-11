@@ -1,5 +1,6 @@
-import * as logs from '@aws-cdk/aws-logs';
-import * as cdk from '@aws-cdk/core';
+import * as logs from 'aws-cdk-lib/aws-logs';
+import * as cdk from 'aws-cdk-lib/core';
+import { IConstruct } from 'constructs';
 import { Policy } from '../../policy';
 
 export class LogGroupShortRetention extends Policy implements cdk.IAspect {
@@ -11,7 +12,7 @@ export class LogGroupShortRetention extends Policy implements cdk.IAspect {
     super();
   }
 
-  public visit(node: cdk.IConstruct): void {
+  public visit(node: IConstruct): void {
     if ((node as logs.CfnLogGroup).cfnResourceType === 'AWS::Logs::LogGroup') {
       const group = node as logs.CfnLogGroup;
       if (!group.retentionInDays) {

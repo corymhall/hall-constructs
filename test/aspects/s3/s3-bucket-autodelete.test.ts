@@ -1,6 +1,6 @@
-import * as assertions from '@aws-cdk/assertions';
-import * as s3 from '@aws-cdk/aws-s3';
-import * as cdk from '@aws-cdk/core';
+import * as assertions from 'aws-cdk-lib/assertions';
+import * as s3 from 'aws-cdk-lib/aws-s3';
+import * as cdk from 'aws-cdk-lib/core';
 import { S3BucketAutoDelete } from '../../../src/aspects';
 
 let stack: cdk.Stack;

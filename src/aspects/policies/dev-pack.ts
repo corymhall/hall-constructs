@@ -1,4 +1,4 @@
-import * as cdk from '@aws-cdk/core';
+import * as cdk from 'aws-cdk-lib/core';
 import { KmsKeyPolicy } from './kms';
 import { LogGroupShortRetention } from './logs';
 import { Retention } from './retention';

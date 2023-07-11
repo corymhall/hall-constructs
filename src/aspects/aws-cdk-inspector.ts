@@ -1,4 +1,5 @@
-import * as cdk from '@aws-cdk/core';
+import * as cdk from 'aws-cdk-lib/core';
+import { IConstruct } from 'constructs';
 
 /**
  * A utility class that allows you to apply a list of Aspects to a particular
@@ -8,7 +9,7 @@ export class AwsCdkInspector {
   constructor(private readonly policies: cdk.IAspect[]) {
 
   }
-  public check(node: cdk.IConstruct): void {
+  public check(node: IConstruct): void {
     this.policies.forEach(p => {
       cdk.Aspects.of(node).add(p);
     });

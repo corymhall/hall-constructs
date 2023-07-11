@@ -1,22 +1,11 @@
-import { AwsCdkConstructLibrary } from 'projen';
-
-const cdkDeps = [
-  'constructs',
-  '@aws-cdk/core',
-  '@aws-cdk/aws-cloudwatch',
-  '@aws-cdk/aws-logs',
-  '@aws-cdk/aws-kms',
-  '@aws-cdk/assertions',
-  '@aws-cdk/aws-s3',
-];
+import { AwsCdkConstructLibrary } from 'projen/lib/awscdk';
 
 const project = new AwsCdkConstructLibrary({
   author: 'corymhall',
   authorAddress: '43035978+corymhall@users.noreply.github.com',
-  cdkVersion: '1.95.2',
+  cdkVersion: '2.82.0',
   defaultReleaseBranch: 'main',
   name: 'hall-constructs',
-  minNodeVersion: '12.13.0',
   projenrcTs: true,
   repositoryUrl: 'https://github.com/corymhall/hall-constructs.git',
   stale: false,
@@ -24,14 +13,14 @@ const project = new AwsCdkConstructLibrary({
     announce: false,
   },
 
-  cdkAssert: false,
+  jsiiVersion: '~5.0.0',
   releaseToNpm: true,
-  peerDeps: [
-    ...cdkDeps,
-  ],
+  githubOptions: {
+    mergify: false,
+  },
   devDeps: [
-    '@aws-cdk/assert',
-    ...cdkDeps,
+    'ts-node@^10',
+    'jsii-rosetta@5.x',
   ],
 
   autoApproveUpgrades: true,
@@ -47,16 +36,13 @@ const project = new AwsCdkConstructLibrary({
   depsUpgradeOptions: {
     workflowOptions: {
       labels: ['auto-approve'],
-      secret: 'PROJEN_GITHUB_TOKEN',
       container: {
         image: 'jsii/superchain',
       },
     },
-    exclude: [
-      ...cdkDeps,
-    ],
   },
 });
 
 project.gitignore.include('src/aspects/policies/logs');
+project.gitignore.include('test/aspects/logs');
 project.synth();

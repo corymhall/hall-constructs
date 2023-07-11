@@ -1,7 +1,6 @@
-import { SynthUtils } from '@aws-cdk/assert';
-import * as assertions from '@aws-cdk/assertions';
-import * as s3 from '@aws-cdk/aws-s3';
-import * as cdk from '@aws-cdk/core';
+import * as assertions from 'aws-cdk-lib/assertions';
+import * as s3 from 'aws-cdk-lib/aws-s3';
+import * as cdk from 'aws-cdk-lib/core';
 import { HallApp } from '../../src/app';
 
 test('hallapp', () => {
@@ -13,7 +12,7 @@ test('hallapp', () => {
 
   new s3.Bucket(stack, 'Bucket');
 
-  const tags = SynthUtils.synthesize(stack).tags;
+  const tags = app.synth().stacks[0].tags;
   expect(tags.dir).toMatch(/hall-constructs/);
   expect(tags.repoName).toMatch(/hall-constructs/);
 

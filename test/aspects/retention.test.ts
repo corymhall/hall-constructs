@@ -1,6 +1,6 @@
-import * as assertions from '@aws-cdk/assertions';
-import * as logs from '@aws-cdk/aws-logs';
-import * as cdk from '@aws-cdk/core';
+import * as assertions from 'aws-cdk-lib/assertions';
+import * as logs from 'aws-cdk-lib/aws-logs';
+import * as cdk from 'aws-cdk-lib/core';
 import { Retention } from '../../src/aspects';
 
 let stack: cdk.Stack;

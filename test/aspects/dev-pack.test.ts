@@ -1,8 +1,8 @@
-import * as assertions from '@aws-cdk/assertions';
-import * as kms from '@aws-cdk/aws-kms';
-import * as logs from '@aws-cdk/aws-logs';
-import * as s3 from '@aws-cdk/aws-s3';
-import * as cdk from '@aws-cdk/core';
+import * as assertions from 'aws-cdk-lib/assertions';
+import * as kms from 'aws-cdk-lib/aws-kms';
+import * as logs from 'aws-cdk-lib/aws-logs';
+import * as s3 from 'aws-cdk-lib/aws-s3';
+import * as cdk from 'aws-cdk-lib/core';
 import { DevPack, AwsCdkInspector } from '../../src/aspects';
 
 let stack: cdk.Stack;
